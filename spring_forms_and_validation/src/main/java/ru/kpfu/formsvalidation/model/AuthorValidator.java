@@ -17,12 +17,12 @@ public class AuthorValidator implements Validator {
 
   @Override
   public void validate(Object obj, Errors e) {
-    ValidationUtils.rejectIfEmpty(e, "name", "name.empty");
+    ValidationUtils.rejectIfEmpty(e, "name", "name.empty", "name.empty");
     Author a = (Author) obj;
     try {
       new URL(a.getAvatarUrl());
     } catch (MalformedURLException ex) {
-      e.reject("avatarUrl", "URL.incorrect");
+      e.rejectValue("avatarUrl", "URL.incorrect", "URL.incorrect");
     }
   }
 }
